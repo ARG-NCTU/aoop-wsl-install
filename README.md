@@ -125,10 +125,67 @@ Ubuntu 請下載 **AMD64 / x86_64** 版本。
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
 
-安裝結束後，依 Terminal 最後顯示的指示把 Homebrew 加入 PATH。
+安裝過程中可能會要求輸入 Mac 的登入密碼，並要求按下 `Enter` 確認安裝。
+
+> 輸入密碼時 Terminal 不會顯示任何字元，這是正常現象。
+
+安裝完成後，Terminal 最下方通常會出現：
+
+```text
+==> Next steps:
+- Run these commands in your terminal to add Homebrew to your PATH:
+```
+
+接下來需要把 Homebrew 加入 `PATH`，否則之後輸入 `brew` 時可能會出現 `command not found`。
+
+### Apple Silicon Mac（M1 / M2 / M3 / M4 / M5）
+
+如果前一步 `uname -m` 顯示：
+
+```text
+arm64
+```
+
+請在 Terminal 依序執行：
+
+```bash
+echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zprofile
+eval "$(/opt/homebrew/bin/brew shellenv)"
+```
+
+### Intel Mac
+
+如果前一步 `uname -m` 顯示：
+
+```text
+x86_64
+```
+
+請在 Terminal 依序執行：
+
+```bash
+echo 'eval "$(/usr/local/bin/brew shellenv)"' >> ~/.zprofile
+eval "$(/usr/local/bin/brew shellenv)"
+```
+
+> Homebrew 安裝完成時，Terminal 的 `Next steps` 也會直接列出適合你這台 Mac 的指令。  
+> 如果畫面顯示的指令與上面不同，**以 Terminal 顯示的 `Next steps` 為準，將那些指令逐行複製執行即可。**
+
+最後確認 Homebrew 是否安裝成功：
+
+```bash
+brew --version
+```
+
+如果看到類似：
+
+```text
+Homebrew 5.x.x
+```
+
+代表 Homebrew 已經成功安裝並加入 PATH。
 
 ---
-
 ## 3. 安裝 UTM
 
 ```bash
